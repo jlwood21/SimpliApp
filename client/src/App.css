@@ -2,16 +2,25 @@
   text-align: center;
 }
 
-
-.task-list {
-  /* Styles for task list */
-}
-
 .task-item {
-  /* Styles for task item */
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-/* Add more CSS as required for a minimalist design */
+.task-item input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.task-item button {
+  margin-left: auto;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
 
 
 .App-logo {

@@ -5,6 +5,7 @@ const AddTaskForm = ({ onAdd }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!title) return;
         onAdd(title);
         setTitle('');
     };
@@ -23,4 +24,3 @@ const AddTaskForm = ({ onAdd }) => {
 };
 
 export default AddTaskForm;
-
