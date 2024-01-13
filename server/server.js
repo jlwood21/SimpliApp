@@ -1,7 +1,8 @@
 const express = require('express');
-const User = require('./models/User'); // Adjust the path as necessary
+const path = require('path');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const User = require('./models/User'); // Adjust the path as necessary
 
 const app = express();
 app.use(express.json());
@@ -17,12 +18,6 @@ app.post('/register', async (req, res) => {
     }
 });
 
-
-app.get('/', (req, res) => {
-    res.send('Welcome to the SimpliTask API!');
-});
-
-
 // User login endpoint
 app.post('/login', async (req, res) => {
     try {
@@ -37,7 +32,16 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// Add other endpoints and middleware as needed
+// Add other API routes here
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
